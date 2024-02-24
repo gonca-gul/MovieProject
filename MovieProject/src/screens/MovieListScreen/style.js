@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {grayBackground, primaryWhite} from '../../constants/styles/colors';
+import { hp } from '../../shared/helpers/veriables';
 
 const styles = StyleSheet.create({
   shadow: {
@@ -14,7 +15,6 @@ const styles = StyleSheet.create({
   },
   renderItemView: {
     backgroundColor: grayBackground,
-    alignItems: 'center',
     flex: 1,
     borderRadius: 12,
     margin: 12,
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
   },
   textView: {
     margin: 12,
+    height:hp(7)
   },
   itemTitle: {
     fontWeight: '700',

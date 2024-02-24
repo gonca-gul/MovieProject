@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import * as React from 'react';
 import {LogBox, StatusBar} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
@@ -17,7 +10,13 @@ function App() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaProvider>
-        <StatusBar translucent backgroundColor={grayBackground} />
+        <StatusBar
+          animated
+          backgroundColor={grayBackground}
+          barStyle="dark-content"
+          hidden={true}
+          translucent
+        />
         <Navigation />
       </SafeAreaProvider>
     </GestureHandlerRootView>

@@ -2,7 +2,7 @@ import { NavigationContainer, useNavigationContainerRef } from '@react-navigatio
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import MovieListScreen from '../../screens/MovieListScreen';
-
+import MovieDetailScreen from '../../screens/MovieDetailScreen';
 const Stack = createNativeStackNavigator();
 
 function Navigation() {
@@ -17,7 +17,7 @@ function Navigation() {
         }}
       >
         <Stack.Screen name="MovieListScreen" component={MovieListScreen} />
-       {/*  <Stack.Screen name="LoggedOut" component={LoggedOut} /> */}
+        <Stack.Screen name="MovieDetailScreen" component={MovieDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
