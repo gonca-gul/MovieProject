@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   ratingText: {
     fontSize: 14, 
     color: primaryWhite, 
-    fontWeight: 600
+    fontWeight: "600"
   },
   ratingContainerStyle: {
     alignItems: 'flex-start', 
@@ -50,39 +50,38 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24, 
     color: primaryWhite, 
-    fontWeight: 700
+    fontWeight: "700"
   },
   year: {
     fontSize: 24, 
     color: primaryWhite, 
-    fontWeight: 400
+    fontWeight: "400"
   },
   descriptionView: {
     marginTop: 24, 
-    flex: 1
+    flex: 1,
   },
   descriptionTitle: {
     fontSize: 18, 
     color: primaryWhite, 
-    fontWeight: 600
+    fontWeight: "600"
   },
   description: {
     fontSize: 16,
     color: primaryWhite,
-    fontWeight: 400,
+    fontWeight: "400",
     lineHeight: 24,
     marginTop: 6,
   },
   actorsTitle: {
     fontSize: 18,
     color: primaryWhite,
-    fontWeight: 600,
-    marginTop: 24,
+    fontWeight: "600",
   },
   actors: {
     fontSize: 16, 
     color: primaryWhite, 
-    fontWeight: 400, 
+    fontWeight: "400", 
     lineHeight: 18
   },
 });

@@ -56,8 +56,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  noResult:{
+    color:grayBackground,
+    fontSize:16,
+    textAlign:"center",
+    lineHeight:hp(5)
+  },
   textInput: {
     flex: 1,
+    padding:10,
     paddingHorizontal: 18,
     color: primaryWhite,
   },

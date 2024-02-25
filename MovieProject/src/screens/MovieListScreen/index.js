@@ -33,7 +33,7 @@ function MovieListScreen({navigation}) {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchText}&page=${page}`,
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchText}&page=${page}`,
       );
       const data = await response.json();
       if (data?.Search) {
@@ -102,23 +102,27 @@ function MovieListScreen({navigation}) {
           <IconSearch style={styles.iconSearch} />
         </View>
         <View>
-          <FlashList
-            style={styles.flatlist}
-            data={movies}
-            renderItem={renderItem}
-            keyExtractor={item => item?.imdbID}
-            numColumns={2}
-            onEndReached={handleLoadMore}
-            onEndReachedThreshold={0.9}
-            refreshing={false}
-            onRefresh={() => fetchMovies(searchText, 1)}
-            ListFooterComponent={
-              hasMore &&
-              loading && (
-                <ActivityIndicator size={'large'} color={primaryWhite} />
-              )
-            }
-          />
+          {movies?.length === 0 && searchText?.length > 2 ? (
+            <CustomText style={styles.noResult}>No result found</CustomText>
+          ) : (
+            <FlashList
+              style={styles.flatlist}
+              data={movies}
+              renderItem={renderItem}
+              keyExtractor={item => item?.imdbID}
+              numColumns={2}
+              onEndReached={handleLoadMore}
+              onEndReachedThreshold={0.9}
+              refreshing={false}
+              onRefresh={() => fetchMovies(searchText, 1)}
+              ListFooterComponent={
+                hasMore &&
+                loading && (
+                  <ActivityIndicator size={'large'} color={primaryWhite} />
+                )
+              }
+            />
+          )}
         </View>
       </View>
     </Content>

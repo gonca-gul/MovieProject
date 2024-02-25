@@ -1,15 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useEffect, useState } from 'react';
-import {
-    Image,
-    ScrollView,
-    View
-} from 'react-native';
-import { AirbnbRating } from 'react-native-ratings';
-import { API_KEY } from '../../constants/veriable';
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, Image, ScrollView, View} from 'react-native';
+import {AirbnbRating} from 'react-native-ratings';
+import {API_KEY} from '../../constants/veriable';
 import CustomText from '../../shared/customText';
-import { hp, wp } from '../../shared/helpers/veriables';
+import {hp, wp} from '../../shared/helpers/veriables';
 import styles from './style';
+import Content from '../../shared/fragment/content';
 
 function MovieDetailScreen({route}) {
   const imdbID = route.params?.imdbID;
@@ -22,11 +19,10 @@ function MovieDetailScreen({route}) {
         setMovieDetail(JSON.parse(storedMovieDetails));
       } else {
         const response = await fetch(
-          `http://www.omdbapi.com/?apikey=${API_KEY}&i=${imdbID}`,
+          `https://www.omdbapi.com/?apikey=${API_KEY}&i=${imdbID}`,
         );
         const data = await response.json();
         await AsyncStorage?.setItem(imdbID, JSON.stringify(data));
-        console.log('data', data);
         setMovieDetail(data);
       }
     } catch (error) {
@@ -34,13 +30,19 @@ function MovieDetailScreen({route}) {
       throw error;
     }
   };
-  
+
   useEffect(() => {
     fetchMovieDetails(imdbID);
   }, [imdbID]);
-
+  if (movieDetail === null) {
+    return (
+      <Content>
+        <ActivityIndicator size="large" color="#00ff00" />
+      </Content>
+    );
+  }
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.container}>
         <Image
           source={{uri: movieDetail?.Poster}}
@@ -83,14 +85,16 @@ function MovieDetailScreen({route}) {
               <CustomText style={styles.description}>
                 {movieDetail?.Plot}
               </CustomText>
-            </View>
-            <CustomText style={styles.actorsTitle}>
-              Actors:
-              <CustomText style={styles.actors}>
-                {' '}
-                {movieDetail?.Actors}
+              <View style={{marginTop:24}}>
+              <CustomText style={styles.actorsTitle}>
+                Actors:
+                <CustomText style={styles.actors}>
+                  {' '}
+                  {movieDetail?.Actors}
+                </CustomText>
               </CustomText>
-            </CustomText>
+              </View>
+            </View>
           </View>
         </View>
       </View>
