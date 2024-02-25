@@ -94,7 +94,7 @@ function MovieListScreen({navigation}) {
   );
 
   return (
-    <Content onScroll={handleScroll}>
+    <Content onScroll={handleScroll} refresh={true}>
       <View style={styles.container}>
         <CustomText style={styles.bigTitle}>SEARCH MOVIE</CustomText>
         <View style={styles.searchView}>
@@ -117,7 +117,7 @@ function MovieListScreen({navigation}) {
               renderItem={renderItem}
               keyExtractor={(_, index) => index.toString()}
               numColumns={2}
-              refreshing={false}
+              refreshing={loading}
               onRefresh={() => fetchMovies(searchText, 1)}
               ListFooterComponent={
                 hasMore &&
