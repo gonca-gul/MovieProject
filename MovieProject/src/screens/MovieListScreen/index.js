@@ -63,8 +63,8 @@ function MovieListScreen({navigation}) {
     const bottom =
       layoutMeasurement.height + contentOffset.y >= contentSize.height - 400;
     if (bottom && searchText?.length >= 2) {
-       setPage(prevPage => prevPage + 1);
-       fetchMovies(searchText, page + 1);
+      setPage(prevPage => prevPage + 1);
+      fetchMovies(searchText, page + 1);
     }
   };
 
@@ -85,7 +85,9 @@ function MovieListScreen({navigation}) {
           height={hp(20)}
         />
         <View style={styles.textView}>
-          <CustomText style={styles.itemTitle}>{item?.Title}</CustomText>
+          <CustomText style={styles.itemTitle} numberOfLines={2}>
+            {item?.Title}
+          </CustomText>
           <Text style={styles.itemYear}>({item?.Year})</Text>
         </View>
       </TouchableOpacity>

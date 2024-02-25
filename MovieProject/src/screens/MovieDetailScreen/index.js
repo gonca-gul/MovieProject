@@ -18,7 +18,7 @@ import IconBack from '../../components/icons/iconBack';
 function MovieDetailScreen({route, navigation}) {
   const imdbID = route.params?.imdbID;
   const [movieDetail, setMovieDetail] = useState(null);
-  
+
   const fetchMovieDetails = async imdbID => {
     try {
       const storedMovieDetails = await AsyncStorage?.getItem(imdbID);
@@ -49,7 +49,7 @@ function MovieDetailScreen({route, navigation}) {
     );
   }
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <Content contentStyle={styles.contentStyle}>
       <View style={styles.container}>
         <Image
           source={{uri: movieDetail?.Poster}}
@@ -110,7 +110,7 @@ function MovieDetailScreen({route, navigation}) {
           </View>
         </View>
       </View>
-    </ScrollView>
+    </Content>
   );
 }
 export default MovieDetailScreen;

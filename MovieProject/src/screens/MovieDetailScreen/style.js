@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  contentStyle:{
+    backgroundColor:"transparent"
+  },
   imageBackground: {
     flex: 1,
     position: 'absolute',
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
   introductionView: {
     flex: 1, 
     paddingHorizontal: 18, 
-    marginBottom: 32
+    //marginBottom: 24
   },
   title: {
     fontSize: 24, 
