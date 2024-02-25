@@ -117,8 +117,6 @@ function MovieListScreen({navigation}) {
               renderItem={renderItem}
               keyExtractor={(_, index) => index.toString()}
               numColumns={2}
-              refreshing={loading}
-              onRefresh={() => fetchMovies(searchText, 1)}
               ListFooterComponent={
                 hasMore &&
                 loading && (
