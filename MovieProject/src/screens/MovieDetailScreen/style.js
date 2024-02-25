@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {primaryWhite} from '../../constants/styles/colors';
-import {hp} from '../../shared/helpers/veriables';
+import {hp, wp} from '../../shared/helpers/veriables';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,6 +11,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
+  },
+  goBack:{
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width:wp(8),
+    height:hp(4),
+    marginLeft:12,marginTop:12,
+    justifyContent:"center",
+    alignItems:"center",
+    opacity:0.5
   },
   body: {
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
@@ -45,7 +54,7 @@ const styles = StyleSheet.create({
   introductionView: {
     flex: 1, 
     paddingHorizontal: 18, 
-    marginBottom: 24
+    marginBottom: 32
   },
   title: {
     fontSize: 24, 
@@ -59,8 +68,7 @@ const styles = StyleSheet.create({
   },
   descriptionView: {
     marginTop: 24, 
-    flex: 1,
-  },
+    marginBottom: 24},
   descriptionTitle: {
     fontSize: 18, 
     color: primaryWhite, 

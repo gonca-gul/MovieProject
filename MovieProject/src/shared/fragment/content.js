@@ -8,6 +8,7 @@ function Content({
   contentStyle,
   scrollViewProps,
   refresh,
+  onScroll,
   onRefreshing,
   ...props
 }) {
@@ -19,6 +20,7 @@ function Content({
   }, [refreshing]);
     return (
       <KeyboardAwareScrollView
+      onScroll={onScroll}
         enableOnAndroid
         enableAutomaticScroll
         refreshControl={refresh ? (

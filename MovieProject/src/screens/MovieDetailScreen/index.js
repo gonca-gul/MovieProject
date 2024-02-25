@@ -1,14 +1,21 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Image, ScrollView, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {AirbnbRating} from 'react-native-ratings';
 import {API_KEY} from '../../constants/veriable';
 import CustomText from '../../shared/customText';
 import {hp, wp} from '../../shared/helpers/veriables';
 import styles from './style';
 import Content from '../../shared/fragment/content';
+import IconBack from '../../components/icons/iconBack';
 
-function MovieDetailScreen({route}) {
+function MovieDetailScreen({route, navigation}) {
   const imdbID = route.params?.imdbID;
   const [movieDetail, setMovieDetail] = useState(null);
 
@@ -49,6 +56,11 @@ function MovieDetailScreen({route}) {
           style={styles.imageBackground}
           blurRadius={5}
         />
+        <TouchableOpacity
+          onPress={() => navigation?.goBack()}
+          style={styles.goBack}>
+          <IconBack />
+        </TouchableOpacity>
         <View style={styles.body}>
           <View style={styles.rowView}>
             <View style={styles.imageView}>
@@ -85,14 +97,14 @@ function MovieDetailScreen({route}) {
               <CustomText style={styles.description}>
                 {movieDetail?.Plot}
               </CustomText>
-              <View style={{marginTop:24}}>
-              <CustomText style={styles.actorsTitle}>
-                Actors:
-                <CustomText style={styles.actors}>
-                  {' '}
-                  {movieDetail?.Actors}
+              <View style={{marginTop: 24}}>
+                <CustomText style={styles.actorsTitle}>
+                  Actors:
+                  <CustomText style={styles.actors}>
+                    {' '}
+                    {movieDetail?.Actors}
+                  </CustomText>
                 </CustomText>
-              </CustomText>
               </View>
             </View>
           </View>

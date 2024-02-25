@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -59,19 +59,25 @@ function MovieListScreen({navigation}) {
     }
   }, [searchText]);
 
-  const handleLoadMore = _.debounce(() => {
-    if (hasMore) {
+  const handleScroll = ({nativeEvent}) => {
+    const {layoutMeasurement, contentOffset, contentSize} = nativeEvent;
+    const bottom =
+      layoutMeasurement.height + contentOffset.y >= contentSize.height - 400;
+    if (bottom) {
       setPage(prevPage => prevPage + 1);
-      fetchMovies(searchText, page);
+      fetchMovies(searchText, page + 1);
     }
-  }, 1500);
+  };
 
   const renderItem = ({item}) => (
     <DropShadow style={styles.shadow}>
       <TouchableOpacity
         style={styles.renderItemView}
         onPress={() =>
-          navigation?.navigate('MovieDetailScreen', {imdbID: item?.imdbID})
+          navigation?.navigate('MovieDetailScreen', {
+            imdbID: item?.imdbID,
+            navigation,
+          })
         }>
         <Image
           source={{uri: item?.Poster}}
@@ -88,7 +94,7 @@ function MovieListScreen({navigation}) {
   );
 
   return (
-    <Content>
+    <Content onScroll={handleScroll}>
       <View style={styles.container}>
         <CustomText style={styles.bigTitle}>SEARCH MOVIE</CustomText>
         <View style={styles.searchView}>
@@ -102,17 +108,15 @@ function MovieListScreen({navigation}) {
           <IconSearch style={styles.iconSearch} />
         </View>
         <View>
-          {movies?.length === 0 && searchText?.length > 2 ? (
+          {movies?.length < 1 && searchText?.length > 3 ? (
             <CustomText style={styles.noResult}>No result found</CustomText>
           ) : (
             <FlatList
               style={styles.flatlist}
               data={movies}
               renderItem={renderItem}
-              keyExtractor={item => item?.imdbID}
+              keyExtractor={(_, index) => index.toString()}
               numColumns={2}
-              onEndReached={handleLoadMore}
-              onEndReachedThreshold={0.9}
               refreshing={false}
               onRefresh={() => fetchMovies(searchText, 1)}
               ListFooterComponent={
@@ -128,4 +132,4 @@ function MovieListScreen({navigation}) {
     </Content>
   );
 }
-export default MovieListScreen;
+export default memo(MovieListScreen);
