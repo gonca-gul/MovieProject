@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {grayBackground, primaryWhite} from '../../constants/styles/colors';
-import { hp } from '../../shared/helpers/veriables';
+import { hp, wp } from '../../shared/helpers/veriables';
 
 const styles = StyleSheet.create({
   shadow: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
   renderItemView: {
     backgroundColor: grayBackground,
-    flex: 1,
+    width: wp(42), 
     borderRadius: 12,
     margin: 12,
   },

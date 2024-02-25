@@ -40,7 +40,6 @@ function MovieListScreen({navigation}) {
         setMovies(prevMovies => [...prevMovies, ...data.Search]);
         setHasMore(data.Search.length > 0);
       } else {
-        setMovies([]);
         setHasMore(false);
       }
     } catch (error) {
@@ -52,7 +51,7 @@ function MovieListScreen({navigation}) {
 
   useEffect(() => {
     if (searchText?.length > 2) {
-      fetchMovies(searchText);
+      fetchMovies(searchText, page);
     } else {
       setMovies([]);
       setHasMore(true);
@@ -63,9 +62,9 @@ function MovieListScreen({navigation}) {
     const {layoutMeasurement, contentOffset, contentSize} = nativeEvent;
     const bottom =
       layoutMeasurement.height + contentOffset.y >= contentSize.height - 400;
-    if (bottom) {
-      setPage(prevPage => prevPage + 1);
-      fetchMovies(searchText, page + 1);
+    if (bottom && searchText?.length >= 2) {
+       setPage(prevPage => prevPage + 1);
+       fetchMovies(searchText, page + 1);
     }
   };
 

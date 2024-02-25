@@ -18,7 +18,7 @@ import IconBack from '../../components/icons/iconBack';
 function MovieDetailScreen({route, navigation}) {
   const imdbID = route.params?.imdbID;
   const [movieDetail, setMovieDetail] = useState(null);
-
+  
   const fetchMovieDetails = async imdbID => {
     try {
       const storedMovieDetails = await AsyncStorage?.getItem(imdbID);
