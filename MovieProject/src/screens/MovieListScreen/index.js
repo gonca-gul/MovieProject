@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
+  FlatList,
   Image,
   Text,
   TextInput,
@@ -16,7 +17,6 @@ import DropShadow from 'react-native-drop-shadow';
 import styles from './style';
 import _ from 'lodash';
 import {primaryWhite} from '../../constants/styles/colors';
-import {FlashList} from '@shopify/flash-list';
 
 function MovieListScreen({navigation}) {
   const [searchText, setSearchText] = useState('');
@@ -105,7 +105,7 @@ function MovieListScreen({navigation}) {
           {movies?.length === 0 && searchText?.length > 2 ? (
             <CustomText style={styles.noResult}>No result found</CustomText>
           ) : (
-            <FlashList
+            <FlatList
               style={styles.flatlist}
               data={movies}
               renderItem={renderItem}

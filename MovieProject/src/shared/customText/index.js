@@ -4,7 +4,7 @@ import customTextStyle from './customTextStyle';
 
 
 function CustomText(props) {
-  const {children, onPress = null} = props || {};
+  const {children} = props || {};
  
   return (
     <Text
@@ -12,7 +12,6 @@ function CustomText(props) {
         customTextStyle?.textStyle,
         props?.color && {color: props?.color},
       ]}
-      onPress={onPress}
       {...props}>
       {children}
     </Text>

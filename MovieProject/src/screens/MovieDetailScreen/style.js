@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {grayBackground, primaryWhite} from '../../constants/styles/colors';
+import {primaryWhite} from '../../constants/styles/colors';
 import {hp} from '../../shared/helpers/veriables';
 
 const styles = StyleSheet.create({
