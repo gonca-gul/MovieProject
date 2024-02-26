@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  actorsView:{
+    marginTop: 24
+  },
   goBack:{
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     width:wp(8),

@@ -97,7 +97,7 @@ function MovieDetailScreen({route, navigation}) {
               <CustomText style={styles.description}>
                 {movieDetail?.Plot}
               </CustomText>
-              <View style={{marginTop: 24}}>
+              <View style={styles.actorsView}>
                 <CustomText style={styles.actorsTitle}>
                   Actors:
                   <CustomText style={styles.actors}>
